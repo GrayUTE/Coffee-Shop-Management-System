@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.lbName = new System.Windows.Forms.Label();
-            this.ptbLogoUsername = new System.Windows.Forms.PictureBox();
-            this.PbLogo = new System.Windows.Forms.PictureBox();
             this.txbUserName = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txbPassword = new System.Windows.Forms.TextBox();
-            this.pblogoPassword = new System.Windows.Forms.PictureBox();
             this.LOGIN = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbLogoUsername)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PbLogo)).BeginInit();
+            this.pblogoPassword = new System.Windows.Forms.PictureBox();
+            this.ptbLogoUsername = new System.Windows.Forms.PictureBox();
+            this.PbLogo = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pblogoPassword)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbLogoUsername)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // lbName
@@ -55,28 +55,8 @@
             this.lbName.Size = new System.Drawing.Size(337, 36);
             this.lbName.TabIndex = 1;
             this.lbName.Text = "THING LONG COFFE";
+            this.lbName.UseWaitCursor = true;
             this.lbName.Click += new System.EventHandler(this.lbName_Click);
-            // 
-            // ptbLogoUsername
-            // 
-            this.ptbLogoUsername.Image = global::QuanLyQuanCafe.Properties.Resources.Tk;
-            this.ptbLogoUsername.Location = new System.Drawing.Point(11, 13);
-            this.ptbLogoUsername.Name = "ptbLogoUsername";
-            this.ptbLogoUsername.Size = new System.Drawing.Size(60, 49);
-            this.ptbLogoUsername.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ptbLogoUsername.TabIndex = 2;
-            this.ptbLogoUsername.TabStop = false;
-            this.ptbLogoUsername.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // PbLogo
-            // 
-            this.PbLogo.Image = global::QuanLyQuanCafe.Properties.Resources.logo;
-            this.PbLogo.Location = new System.Drawing.Point(39, -34);
-            this.PbLogo.Name = "PbLogo";
-            this.PbLogo.Size = new System.Drawing.Size(313, 281);
-            this.PbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PbLogo.TabIndex = 0;
-            this.PbLogo.TabStop = false;
             // 
             // txbUserName
             // 
@@ -88,6 +68,7 @@
             this.txbUserName.Name = "txbUserName";
             this.txbUserName.Size = new System.Drawing.Size(249, 43);
             this.txbUserName.TabIndex = 1;
+            this.txbUserName.UseWaitCursor = true;
             this.txbUserName.TextChanged += new System.EventHandler(this.txbUserName_TextChanged);
             // 
             // panel1
@@ -99,6 +80,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(333, 73);
             this.panel1.TabIndex = 4;
+            this.panel1.UseWaitCursor = true;
             // 
             // panel2
             // 
@@ -109,6 +91,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(333, 73);
             this.panel2.TabIndex = 5;
+            this.panel2.UseWaitCursor = true;
             // 
             // txbPassword
             // 
@@ -120,17 +103,8 @@
             this.txbPassword.Size = new System.Drawing.Size(249, 39);
             this.txbPassword.TabIndex = 2;
             this.txbPassword.UseSystemPasswordChar = true;
+            this.txbPassword.UseWaitCursor = true;
             this.txbPassword.TextChanged += new System.EventHandler(this.txbPassword_TextChanged);
-            // 
-            // pblogoPassword
-            // 
-            this.pblogoPassword.Image = global::QuanLyQuanCafe.Properties.Resources.pass;
-            this.pblogoPassword.Location = new System.Drawing.Point(11, 13);
-            this.pblogoPassword.Name = "pblogoPassword";
-            this.pblogoPassword.Size = new System.Drawing.Size(60, 49);
-            this.pblogoPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pblogoPassword.TabIndex = 2;
-            this.pblogoPassword.TabStop = false;
             // 
             // LOGIN
             // 
@@ -143,6 +117,7 @@
             this.LOGIN.TabIndex = 3;
             this.LOGIN.Text = "ĐĂNG NHẬP";
             this.LOGIN.UseVisualStyleBackColor = false;
+            this.LOGIN.UseWaitCursor = true;
             this.LOGIN.Click += new System.EventHandler(this.LOGIN_Click);
             // 
             // Exit
@@ -156,7 +131,42 @@
             this.Exit.TabIndex = 4;
             this.Exit.Text = "THOÁT";
             this.Exit.UseVisualStyleBackColor = false;
+            this.Exit.UseWaitCursor = true;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            // 
+            // pblogoPassword
+            // 
+            this.pblogoPassword.Image = global::QuanLyQuanCafe.Properties.Resources.pass;
+            this.pblogoPassword.Location = new System.Drawing.Point(11, 13);
+            this.pblogoPassword.Name = "pblogoPassword";
+            this.pblogoPassword.Size = new System.Drawing.Size(60, 49);
+            this.pblogoPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pblogoPassword.TabIndex = 2;
+            this.pblogoPassword.TabStop = false;
+            this.pblogoPassword.UseWaitCursor = true;
+            // 
+            // ptbLogoUsername
+            // 
+            this.ptbLogoUsername.Image = global::QuanLyQuanCafe.Properties.Resources.Tk;
+            this.ptbLogoUsername.Location = new System.Drawing.Point(11, 13);
+            this.ptbLogoUsername.Name = "ptbLogoUsername";
+            this.ptbLogoUsername.Size = new System.Drawing.Size(60, 49);
+            this.ptbLogoUsername.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbLogoUsername.TabIndex = 2;
+            this.ptbLogoUsername.TabStop = false;
+            this.ptbLogoUsername.UseWaitCursor = true;
+            this.ptbLogoUsername.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // PbLogo
+            // 
+            this.PbLogo.Image = global::QuanLyQuanCafe.Properties.Resources.logo;
+            this.PbLogo.Location = new System.Drawing.Point(39, -34);
+            this.PbLogo.Name = "PbLogo";
+            this.PbLogo.Size = new System.Drawing.Size(313, 281);
+            this.PbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PbLogo.TabIndex = 0;
+            this.PbLogo.TabStop = false;
+            this.PbLogo.UseWaitCursor = true;
             // 
             // fLogin
             // 
@@ -175,15 +185,16 @@
             this.Name = "fLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng Nhập";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fLogin_FormClosing);
             this.Load += new System.EventHandler(this.fLogin_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ptbLogoUsername)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PbLogo)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pblogoPassword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbLogoUsername)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PbLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
