@@ -1,49 +1,50 @@
-﻿USE [QuanLyQuanCafe]
+﻿USE QuanLyQuanCafe
 GO
-/****** Object:  StoredProcedure [dbo].[usp_filterFood]    Script Date: 9/30/2025 12:10:05 PM ******/
+
+DROP PROCEDURE IF EXISTS usp_filterFood;
+GO 
+
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROCEDURE [dbo].[usp_filterFood]
-    @FilterType NVARCHAR(20), -- Kiểu lọc: "Tất cả", "Tên ", "Mã SP", "giá", "loại"
-    @Value NVARCHAR(100) = NULL -- Giá trị lọc (tên, mã, đơn giá, hoặc loại)
+CREATE PROCEDURE usp_filterFood
+    @FilterType NVARCHAR(20) -- Kiểu lọc: "Tất cả", "Đồ ăn", "Đồ uống"
 AS
 BEGIN
-    IF @FilterType = 'Tất cả'
-    BEGIN
-        SELECT MaSP, TenSP, LoaiSP, DonGia
-        FROM SanPham;
-    END
-    ELSE IF @FilterType = 'Tên'
-    BEGIN
-        SELECT MaSP, TenSP, LoaiSP, DonGia
-        FROM SanPham
-        WHERE TenSP LIKE '%' + @Value + '%';
-    END
-    ELSE IF @FilterType = 'Mã Sản phẩm'
-    BEGIN
-        IF ISNUMERIC(@Value) = 1
+    SET NOCOUNT ON; -- Tắt thông báo số dòng bị ảnh hưởng để tối ưu
+
+    BEGIN TRY
+        IF @FilterType = 'Tất cả'
+        BEGIN
+            SELECT MaSP, TenSP, LoaiSP, DonGia
+            FROM SanPham;
+        END
+        ELSE IF @FilterType = 'Đồ ăn'
         BEGIN
             SELECT MaSP, TenSP, LoaiSP, DonGia
             FROM SanPham
-            WHERE MaSP = CAST(@Value AS INT);
+            WHERE LoaiSP = 'Đồ ăn';
         END
-    END
-    ELSE IF @FilterType = 'Giá'
-    BEGIN
-        IF ISNUMERIC(@Value) = 1
+        ELSE IF @FilterType = 'Đồ uống'
         BEGIN
             SELECT MaSP, TenSP, LoaiSP, DonGia
             FROM SanPham
-            WHERE DonGia = CAST(@Value AS INT);
+            WHERE LoaiSP = 'Đồ uống';
         END
-    END
-    ELSE IF @FilterType = 'Loại'
-    BEGIN
-        SELECT MaSP, TenSP, LoaiSP, DonGia
-        FROM SanPham
-        WHERE LoaiSP = @Value;
-    END
+        ELSE
+        BEGIN
+            RAISERROR ('Kiểu lọc không hợp lệ. Chỉ chấp nhận "Tất cả", "Đồ ăn" hoặc "Đồ uống".', 16, 1);
+            RETURN;
+        END
+    END TRY
+    BEGIN CATCH
+        DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+        DECLARE @ErrorSeverity INT = ERROR_SEVERITY();
+        DECLARE @ErrorState INT = ERROR_STATE();
+        RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState);
+    END CATCH
 END;
+GO

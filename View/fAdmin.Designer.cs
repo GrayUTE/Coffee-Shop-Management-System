@@ -36,22 +36,23 @@
             this.tpQLKH = new System.Windows.Forms.TabPage();
             this.tpQLNV = new System.Windows.Forms.TabPage();
             this.tcQLmenu = new System.Windows.Forms.TabPage();
+            this.cbFilter = new System.Windows.Forms.ComboBox();
             this.dgFood = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnAddMon = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.cbLoai = new System.Windows.Forms.ComboBox();
+            this.btnAddMon = new System.Windows.Forms.Button();
             this.btnXoaMon = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbLoaiMon = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.btnCapNhatMon = new System.Windows.Forms.Button();
+            this.lbDanhMuc = new System.Windows.Forms.Label();
+            this.lbDonGia = new System.Windows.Forms.Label();
             this.tbGia = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbTenMon = new System.Windows.Forms.Label();
             this.tbTenMon = new System.Windows.Forms.TextBox();
             this.tbMaMon = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbMaSP = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tpDB = new System.Windows.Forms.TabPage();
@@ -160,8 +161,8 @@
             // tcQLmenu
             // 
             this.tcQLmenu.BackColor = System.Drawing.Color.Sienna;
+            this.tcQLmenu.Controls.Add(this.cbFilter);
             this.tcQLmenu.Controls.Add(this.dgFood);
-            this.tcQLmenu.Controls.Add(this.comboBox1);
             this.tcQLmenu.Controls.Add(this.label8);
             this.tcQLmenu.Controls.Add(this.panel5);
             this.tcQLmenu.Controls.Add(this.label2);
@@ -174,6 +175,19 @@
             this.tcQLmenu.Text = "Quản Lý Menu";
             this.tcQLmenu.Click += new System.EventHandler(this.tcQLmenu_Click);
             // 
+            // cbFilter
+            // 
+            this.cbFilter.FormattingEnabled = true;
+            this.cbFilter.Items.AddRange(new object[] {
+            "Tất cả",
+            "Đồ ăn",
+            "Đồ uống"});
+            this.cbFilter.Location = new System.Drawing.Point(108, 371);
+            this.cbFilter.Name = "cbFilter";
+            this.cbFilter.Size = new System.Drawing.Size(246, 35);
+            this.cbFilter.TabIndex = 19;
+            this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.cbFilter_SelectedIndexChanged);
+            // 
             // dgFood
             // 
             this.dgFood.BackgroundColor = System.Drawing.Color.SaddleBrown;
@@ -185,15 +199,6 @@
             this.dgFood.Size = new System.Drawing.Size(867, 336);
             this.dgFood.TabIndex = 18;
             this.dgFood.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSp_CellContentClick);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.Color.Linen;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(108, 371);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(259, 35);
-            this.comboBox1.TabIndex = 17;
             // 
             // label8
             // 
@@ -209,24 +214,62 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.SaddleBrown;
-            this.panel5.Controls.Add(this.btnAddMon);
             this.panel5.Controls.Add(this.btnLuu);
+            this.panel5.Controls.Add(this.btnClear);
+            this.panel5.Controls.Add(this.cbLoai);
+            this.panel5.Controls.Add(this.btnAddMon);
             this.panel5.Controls.Add(this.btnXoaMon);
-            this.panel5.Controls.Add(this.button2);
-            this.panel5.Controls.Add(this.label7);
-            this.panel5.Controls.Add(this.tbLoaiMon);
-            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.btnCapNhatMon);
+            this.panel5.Controls.Add(this.lbDanhMuc);
+            this.panel5.Controls.Add(this.lbDonGia);
             this.panel5.Controls.Add(this.tbGia);
-            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.lbTenMon);
             this.panel5.Controls.Add(this.tbTenMon);
             this.panel5.Controls.Add(this.tbMaMon);
-            this.panel5.Controls.Add(this.label4);
+            this.panel5.Controls.Add(this.lbMaSP);
             this.panel5.Controls.Add(this.label3);
             this.panel5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel5.Location = new System.Drawing.Point(0, 73);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(902, 258);
             this.panel5.TabIndex = 15;
+            // 
+            // btnLuu
+            // 
+            this.btnLuu.BackColor = System.Drawing.Color.LightGray;
+            this.btnLuu.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuu.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnLuu.Location = new System.Drawing.Point(321, 194);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(114, 45);
+            this.btnLuu.TabIndex = 22;
+            this.btnLuu.Text = "Lưu";
+            this.btnLuu.UseVisualStyleBackColor = false;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click_1);
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.Color.LightGray;
+            this.btnClear.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnClear.Location = new System.Drawing.Point(441, 194);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(114, 45);
+            this.btnClear.TabIndex = 21;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // cbLoai
+            // 
+            this.cbLoai.FormattingEnabled = true;
+            this.cbLoai.Items.AddRange(new object[] {
+            "Đồ ăn",
+            "Đồ uống"});
+            this.cbLoai.Location = new System.Drawing.Point(688, 130);
+            this.cbLoai.Name = "cbLoai";
+            this.cbLoai.Size = new System.Drawing.Size(175, 35);
+            this.cbLoai.TabIndex = 20;
             // 
             // btnAddMon
             // 
@@ -239,18 +282,7 @@
             this.btnAddMon.TabIndex = 15;
             this.btnAddMon.Text = "Thêm món";
             this.btnAddMon.UseVisualStyleBackColor = false;
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.BackColor = System.Drawing.Color.LightGray;
-            this.btnLuu.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuu.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnLuu.Location = new System.Drawing.Point(387, 193);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(114, 45);
-            this.btnLuu.TabIndex = 14;
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = false;
+            this.btnAddMon.Click += new System.EventHandler(this.btnAddMon_Click);
             // 
             // btnXoaMon
             // 
@@ -263,48 +295,42 @@
             this.btnXoaMon.TabIndex = 12;
             this.btnXoaMon.Text = "Xóa món";
             this.btnXoaMon.UseVisualStyleBackColor = false;
+            this.btnXoaMon.Click += new System.EventHandler(this.btnXoaMon_Click);
             // 
-            // button2
+            // btnCapNhatMon
             // 
-            this.button2.BackColor = System.Drawing.Color.LightGray;
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.button2.Location = new System.Drawing.Point(755, 44);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(140, 44);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Cập nhật";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnCapNhatMon.BackColor = System.Drawing.Color.LightGray;
+            this.btnCapNhatMon.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapNhatMon.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnCapNhatMon.Location = new System.Drawing.Point(755, 44);
+            this.btnCapNhatMon.Name = "btnCapNhatMon";
+            this.btnCapNhatMon.Size = new System.Drawing.Size(140, 44);
+            this.btnCapNhatMon.TabIndex = 11;
+            this.btnCapNhatMon.Text = "Cập nhật";
+            this.btnCapNhatMon.UseVisualStyleBackColor = false;
+            this.btnCapNhatMon.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label7
+            // lbDanhMuc
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label7.Location = new System.Drawing.Point(724, 105);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 22);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Danh mục";
+            this.lbDanhMuc.AutoSize = true;
+            this.lbDanhMuc.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDanhMuc.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lbDanhMuc.Location = new System.Drawing.Point(724, 105);
+            this.lbDanhMuc.Name = "lbDanhMuc";
+            this.lbDanhMuc.Size = new System.Drawing.Size(88, 22);
+            this.lbDanhMuc.TabIndex = 9;
+            this.lbDanhMuc.Text = "Danh mục";
             // 
-            // tbLoaiMon
+            // lbDonGia
             // 
-            this.tbLoaiMon.BackColor = System.Drawing.Color.LightSalmon;
-            this.tbLoaiMon.Location = new System.Drawing.Point(728, 130);
-            this.tbLoaiMon.Name = "tbLoaiMon";
-            this.tbLoaiMon.Size = new System.Drawing.Size(167, 35);
-            this.tbLoaiMon.TabIndex = 8;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label6.Location = new System.Drawing.Point(476, 105);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 22);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Đơn giá";
+            this.lbDonGia.AutoSize = true;
+            this.lbDonGia.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDonGia.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lbDonGia.Location = new System.Drawing.Point(476, 105);
+            this.lbDonGia.Name = "lbDonGia";
+            this.lbDonGia.Size = new System.Drawing.Size(73, 22);
+            this.lbDonGia.TabIndex = 7;
+            this.lbDonGia.Text = "Đơn giá";
             // 
             // tbGia
             // 
@@ -314,16 +340,16 @@
             this.tbGia.Size = new System.Drawing.Size(174, 35);
             this.tbGia.TabIndex = 6;
             // 
-            // label5
+            // lbTenMon
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(245, 105);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 22);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Tên";
+            this.lbTenMon.AutoSize = true;
+            this.lbTenMon.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTenMon.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lbTenMon.Location = new System.Drawing.Point(245, 105);
+            this.lbTenMon.Name = "lbTenMon";
+            this.lbTenMon.Size = new System.Drawing.Size(40, 22);
+            this.lbTenMon.TabIndex = 5;
+            this.lbTenMon.Text = "Tên";
             // 
             // tbTenMon
             // 
@@ -342,17 +368,17 @@
             this.tbMaMon.TabIndex = 3;
             this.tbMaMon.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // label4
+            // lbMaSP
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.Location = new System.Drawing.Point(20, 105);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 22);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Mã món";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.lbMaSP.AutoSize = true;
+            this.lbMaSP.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMaSP.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lbMaSP.Location = new System.Drawing.Point(20, 105);
+            this.lbMaSP.Name = "lbMaSP";
+            this.lbMaSP.Size = new System.Drawing.Size(74, 22);
+            this.lbMaSP.TabIndex = 2;
+            this.lbMaSP.Text = "Mã món";
+            this.lbMaSP.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -605,23 +631,24 @@
         private System.Windows.Forms.Label lblAmountStaff;
         private System.Windows.Forms.Label lblStaff;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbMaSP;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbMaMon;
         private System.Windows.Forms.Button btnXoaMon;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tbLoaiMon;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnCapNhatMon;
+        private System.Windows.Forms.Label lbDanhMuc;
+        private System.Windows.Forms.Label lbDonGia;
         private System.Windows.Forms.TextBox tbGia;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbTenMon;
         private System.Windows.Forms.TextBox tbTenMon;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnAddMon;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView dgFood;
+        private System.Windows.Forms.ComboBox cbFilter;
+        private System.Windows.Forms.ComboBox cbLoai;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnLuu;
     }
 }

@@ -44,11 +44,11 @@ INSERT INTO KhachHang (HoTen, SDT, DiemTichLuy) VALUES
 
 -- ================= SẢN PHẨM =================
 INSERT INTO SanPham (TenSP, LoaiSP, DonGia) VALUES
-(N'Cà phê đen',    N'Đồ uống', 20000),
-(N'Bánh Mì Que',   N'Đồ ăn',   25000),
-(N'Trà chanh',     N'Đồ uống', 30000),
-(N'Sinh tố dâu',   N'Đồ uống', 40000),
-(N'Bánh ngọt',     N'Đồ ăn',   15000);
+(N'Cà phê đen', N'Đồ uống', 20000),
+(N'Bánh Mì Que',N'Đồ ăn',   25000),
+(N'Trà chanh', N'Đồ uống', 30000),
+(N'Sinh tố dâu',N'Đồ uống', 40000),
+(N'Bánh ngọt', N'Đồ ăn',   15000);
 
 -- ================= BÀN =================
 INSERT INTO Ban (STT, TrangThai) VALUES
@@ -57,7 +57,6 @@ INSERT INTO Ban (STT, TrangThai) VALUES
 (3, N'Trống'),
 (4, N'Trống'),
 (5, N'Có khách');
-
 -- ================= HÓA ĐƠN =================
 INSERT INTO HoaDon (TruDiemTichLuy, MaNV, MaKH, MaBan) VALUES
 (10, 'NV1', 1, 2),
@@ -89,3 +88,9 @@ INSERT INTO ChiTietChucNang (ID, MaCN) VALUES
 ('NV3', 'TN');  -- NV3 -> cashier
 
 
+
+
+--Fix lại lỗi identity tăng
+
+-- DBCC CHECKIDENT ('SanPham', RESEED, 5)
+--DBCC CHECKIDENT ('SanPham', NORESEED)

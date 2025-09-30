@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\View"
   ],
-  "SelectedNode": "\\QuanLyQuanCafe.csproj",
+  "SelectedNode": "\\View\\fAccountProfile.cs",
   "PreviewInSolutionExplorer": false
 }
