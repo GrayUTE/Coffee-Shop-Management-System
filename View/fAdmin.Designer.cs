@@ -70,6 +70,8 @@
             this.lblRevenue = new System.Windows.Forms.Label();
             this.tpDashBoard = new System.Windows.Forms.TabControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnTimKiem = new System.Windows.Forms.Button();
+            this.tbTimKiem = new System.Windows.Forms.TextBox();
             this.pnAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tcQLmenu.SuspendLayout();
@@ -161,6 +163,8 @@
             // tcQLmenu
             // 
             this.tcQLmenu.BackColor = System.Drawing.Color.Sienna;
+            this.tcQLmenu.Controls.Add(this.tbTimKiem);
+            this.tcQLmenu.Controls.Add(this.btnTimKiem);
             this.tcQLmenu.Controls.Add(this.cbFilter);
             this.tcQLmenu.Controls.Add(this.dgFood);
             this.tcQLmenu.Controls.Add(this.label8);
@@ -567,6 +571,27 @@
             this.tpDashBoard.TabIndex = 5;
             this.tpDashBoard.Tag = "";
             // 
+            // btnTimKiem
+            // 
+            this.btnTimKiem.BackColor = System.Drawing.Color.LightGray;
+            this.btnTimKiem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKiem.ForeColor = System.Drawing.Color.Sienna;
+            this.btnTimKiem.Location = new System.Drawing.Point(561, 366);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(134, 44);
+            this.btnTimKiem.TabIndex = 23;
+            this.btnTimKiem.Text = "Tìm kiếm";
+            this.btnTimKiem.UseVisualStyleBackColor = false;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click_1);
+            // 
+            // tbTimKiem
+            // 
+            this.tbTimKiem.BackColor = System.Drawing.Color.LightSalmon;
+            this.tbTimKiem.Location = new System.Drawing.Point(701, 370);
+            this.tbTimKiem.Name = "tbTimKiem";
+            this.tbTimKiem.Size = new System.Drawing.Size(174, 35);
+            this.tbTimKiem.TabIndex = 23;
+            // 
             // fAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -650,5 +675,7 @@
         private System.Windows.Forms.ComboBox cbLoai;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnLuu;
+        private System.Windows.Forms.TextBox tbTimKiem;
+        private System.Windows.Forms.Button btnTimKiem;
     }
 }

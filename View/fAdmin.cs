@@ -292,5 +292,37 @@ namespace QuanLyQuanCafe
             UpdateMaSP(); // Cập nhật tbMaMon với MaSP lớn nhất + 1 từ DB
             MessageBox.Show("Danh sách đã được làm mới từ cơ sở dữ liệu!");
         }
-    }
+
+        private void btnTimKiem_Click_1(object sender, EventArgs e)
+        {
+            // Lấy từ khóa tìm kiếm
+            // Đảm bảo bạn có một TextBox tên là tbTimKiem trong thiết kế Form
+            string keyword = tbTimKiem.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                // Nếu ô tìm kiếm rỗng, tải lại toàn bộ danh sách
+                LoadFoodList();
+                MessageBox.Show("Vui lòng nhập Mã món, Tên món, hoặc Giá để tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnClear_Click(null, null); // Đưa về chế độ thêm mới
+                return;
+            }
+
+            List<FoodDTO> searchResult = FoodBUS.Instance.SearchFood(keyword);
+
+            if (searchResult.Count > 0)
+            {
+                dgFood.DataSource = searchResult;
+                MessageBox.Show($"Đã tìm thấy {searchResult.Count} món ăn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                dgFood.DataSource = null; // Xóa dữ liệu cũ
+                MessageBox.Show("Không tìm thấy món ăn nào phù hợp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            // Đưa Form về trạng thái thêm mới sau khi tìm kiếm
+            btnClear_Click(null, null);
+        }
+    }   
 }

@@ -88,5 +88,17 @@ namespace QuanLyQuanCafe.BUS
             }
             return FoodDAO.Instance.FilterFood(loai);
         }
+
+        public List<FoodDTO> SearchFood(string keyword)
+        {
+            keyword = keyword?.Trim();
+            if (string.IsNullOrEmpty(keyword))
+            {
+                // Nếu từ khóa rỗng, trả về toàn bộ danh sách
+                return GetFoodList();
+            }
+
+            return FoodDAO.Instance.SearchFood(keyword);
+        }
     }
 }

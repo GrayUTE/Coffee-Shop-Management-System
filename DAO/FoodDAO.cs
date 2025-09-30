@@ -223,5 +223,51 @@ namespace QuanLyQuanCafe.DAO
                 return 0;
             }
         }
+
+        public List<FoodDTO> SearchFood(string keyword)
+        {
+            List<FoodDTO> foodList = new List<FoodDTO>();
+            DatabaseConnection db = new DatabaseConnection();
+            try
+            {
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+
+                    // GỌI STORED PROCEDURE
+                    using (SqlCommand command = new SqlCommand("usp_searchFood", conn))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Thêm tham số cho Stored Procedure
+                        command.Parameters.AddWithValue("@Keyword", keyword ?? string.Empty);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // Đảm bảo các tên cột khớp với DTO và DB
+                                int id = Convert.ToInt32(reader["MaSP"]);
+                                string name = reader["TenSP"].ToString();
+                                string category = reader["LoaiSP"].ToString();
+                                float price = Convert.ToSingle(reader["DonGia"]);
+                                foodList.Add(new FoodDTO(id, name, category, price));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Lỗi SQL trong SearchFood: {ex.Message}");
+                MessageBox.Show($"Lỗi khi tìm kiếm dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khác trong SearchFood: {ex.Message}");
+            }
+
+            return foodList;
+        }
     }
 }

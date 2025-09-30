@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataBase\DB_QLQuanCafe.sql" />
+    <Content Include="procedure\proc_searchFood.sql" />
     <Content Include="Utils\.gitignore" />
     <Content Include="Utils\DataDummy.sql" />
     <Content Include="procedure\proc_addFood.sql" />

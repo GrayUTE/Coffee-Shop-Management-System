@@ -1,4 +1,4 @@
-USE [QuanLyQuanCafe]
+﻿USE [QuanLyQuanCafe]
 GO
 
 SET ANSI_NULLS ON
@@ -15,3 +15,8 @@ BEGIN
     INSERT INTO SanPham (TenSP, LoaiSP, DonGia)
     VALUES (@TenSP, @LoaiSP, @DonGia);
 END;
+
+--Fix lại lỗi identity tăng
+
+-- DBCC CHECKIDENT ('SanPham', RESEED, 5)
+--DBCC CHECKIDENT ('SanPham', NORESEED)
