@@ -35,11 +35,40 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tpQLKH = new System.Windows.Forms.TabPage();
             this.tpQLNV = new System.Windows.Forms.TabPage();
+            this.tbEmployeeSearch = new System.Windows.Forms.TextBox();
+            this.btnEmployeeSearch = new System.Windows.Forms.Button();
+            this.dgvEmployeeView = new System.Windows.Forms.DataGridView();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.txtTenChucNang = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.dtpEmployeeStart = new System.Windows.Forms.DateTimePicker();
+            this.txtEmployeeAddress = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtEmployeeSalary = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnEmployeeClear = new System.Windows.Forms.Button();
+            this.btnEmployeeAdd = new System.Windows.Forms.Button();
+            this.btnEmployeeDelete = new System.Windows.Forms.Button();
+            this.btnEmployeeEdit = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtEmployeeName = new System.Windows.Forms.TextBox();
+            this.txxtEmployeeID = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtEmployeePhone = new System.Windows.Forms.TextBox();
             this.tcQLmenu = new System.Windows.Forms.TabPage();
+            this.tbTimKiem = new System.Windows.Forms.TextBox();
+            this.btnTimKiem = new System.Windows.Forms.Button();
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.dgFood = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.tbSoLuong = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.cbLoai = new System.Windows.Forms.ComboBox();
@@ -70,10 +99,13 @@
             this.lblRevenue = new System.Windows.Forms.Label();
             this.tpDashBoard = new System.Windows.Forms.TabControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btnTimKiem = new System.Windows.Forms.Button();
-            this.tbTimKiem = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.pnAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tpQLNV.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeView)).BeginInit();
+            this.panel6.SuspendLayout();
             this.tcQLmenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgFood)).BeginInit();
             this.panel5.SuspendLayout();
@@ -153,12 +185,309 @@
             // tpQLNV
             // 
             this.tpQLNV.BackColor = System.Drawing.Color.Sienna;
+            this.tpQLNV.Controls.Add(this.tbEmployeeSearch);
+            this.tpQLNV.Controls.Add(this.btnEmployeeSearch);
+            this.tpQLNV.Controls.Add(this.dgvEmployeeView);
+            this.tpQLNV.Controls.Add(this.label12);
+            this.tpQLNV.Controls.Add(this.label7);
+            this.tpQLNV.Controls.Add(this.panel6);
+            this.tpQLNV.Controls.Add(this.txtEmployeePhone);
             this.tpQLNV.Location = new System.Drawing.Point(4, 36);
             this.tpQLNV.Name = "tpQLNV";
             this.tpQLNV.Padding = new System.Windows.Forms.Padding(3);
             this.tpQLNV.Size = new System.Drawing.Size(908, 804);
             this.tpQLNV.TabIndex = 2;
             this.tpQLNV.Text = "Quản Lý Nhân Viên";
+            this.tpQLNV.Click += new System.EventHandler(this.tpQLNV_Click);
+            // 
+            // tbEmployeeSearch
+            // 
+            this.tbEmployeeSearch.BackColor = System.Drawing.Color.LightSalmon;
+            this.tbEmployeeSearch.Location = new System.Drawing.Point(719, 379);
+            this.tbEmployeeSearch.Name = "tbEmployeeSearch";
+            this.tbEmployeeSearch.Size = new System.Drawing.Size(174, 35);
+            this.tbEmployeeSearch.TabIndex = 27;
+            this.tbEmployeeSearch.TextChanged += new System.EventHandler(this.tbEmployeeSearch_TextChanged);
+            // 
+            // btnEmployeeSearch
+            // 
+            this.btnEmployeeSearch.BackColor = System.Drawing.Color.LightGray;
+            this.btnEmployeeSearch.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeSearch.ForeColor = System.Drawing.Color.Sienna;
+            this.btnEmployeeSearch.Location = new System.Drawing.Point(579, 374);
+            this.btnEmployeeSearch.Name = "btnEmployeeSearch";
+            this.btnEmployeeSearch.Size = new System.Drawing.Size(134, 44);
+            this.btnEmployeeSearch.TabIndex = 28;
+            this.btnEmployeeSearch.Text = "Tìm kiếm";
+            this.btnEmployeeSearch.UseVisualStyleBackColor = false;
+            this.btnEmployeeSearch.Click += new System.EventHandler(this.btnEmployeeSearch_Click);
+            // 
+            // dgvEmployeeView
+            // 
+            this.dgvEmployeeView.BackgroundColor = System.Drawing.Color.SaddleBrown;
+            this.dgvEmployeeView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployeeView.Location = new System.Drawing.Point(26, 445);
+            this.dgvEmployeeView.Name = "dgvEmployeeView";
+            this.dgvEmployeeView.RowHeadersWidth = 62;
+            this.dgvEmployeeView.RowTemplate.Height = 28;
+            this.dgvEmployeeView.Size = new System.Drawing.Size(867, 336);
+            this.dgvEmployeeView.TabIndex = 25;
+            this.dgvEmployeeView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployeeView_CellContentClick);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.NavajoWhite;
+            this.label12.Location = new System.Drawing.Point(6, 23);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(306, 32);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "QUẢN LÝ NHÂN VIÊN";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label7.Location = new System.Drawing.Point(479, 615);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 22);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Số điện thoại";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.SaddleBrown;
+            this.panel6.Controls.Add(this.txtPhone);
+            this.panel6.Controls.Add(this.label15);
+            this.panel6.Controls.Add(this.txtTenChucNang);
+            this.panel6.Controls.Add(this.label14);
+            this.panel6.Controls.Add(this.label13);
+            this.panel6.Controls.Add(this.dtpEmployeeStart);
+            this.panel6.Controls.Add(this.txtEmployeeAddress);
+            this.panel6.Controls.Add(this.label6);
+            this.panel6.Controls.Add(this.txtEmployeeSalary);
+            this.panel6.Controls.Add(this.label5);
+            this.panel6.Controls.Add(this.button1);
+            this.panel6.Controls.Add(this.btnEmployeeClear);
+            this.panel6.Controls.Add(this.btnEmployeeAdd);
+            this.panel6.Controls.Add(this.btnEmployeeDelete);
+            this.panel6.Controls.Add(this.btnEmployeeEdit);
+            this.panel6.Controls.Add(this.label9);
+            this.panel6.Controls.Add(this.txtEmployeeName);
+            this.panel6.Controls.Add(this.txxtEmployeeID);
+            this.panel6.Controls.Add(this.label10);
+            this.panel6.Controls.Add(this.label11);
+            this.panel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel6.Location = new System.Drawing.Point(3, 73);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(902, 295);
+            this.panel6.TabIndex = 16;
+            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
+            // 
+            // txtTenChucNang
+            // 
+            this.txtTenChucNang.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtTenChucNang.Location = new System.Drawing.Point(9, 199);
+            this.txtTenChucNang.Name = "txtTenChucNang";
+            this.txtTenChucNang.Size = new System.Drawing.Size(198, 35);
+            this.txtTenChucNang.TabIndex = 30;
+            this.txtTenChucNang.TextChanged += new System.EventHandler(this.txtTenChucNang_TextChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label14.Location = new System.Drawing.Point(5, 174);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(93, 22);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "Chức năng";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label13.Location = new System.Drawing.Point(508, 168);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(119, 22);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "Ngày vào làm";
+            // 
+            // dtpEmployeeStart
+            // 
+            this.dtpEmployeeStart.Location = new System.Drawing.Point(510, 194);
+            this.dtpEmployeeStart.Name = "dtpEmployeeStart";
+            this.dtpEmployeeStart.Size = new System.Drawing.Size(350, 35);
+            this.dtpEmployeeStart.TabIndex = 27;
+            this.dtpEmployeeStart.ValueChanged += new System.EventHandler(this.dtpEmployeeStart_ValueChanged);
+            // 
+            // txtEmployeeAddress
+            // 
+            this.txtEmployeeAddress.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtEmployeeAddress.Location = new System.Drawing.Point(679, 121);
+            this.txtEmployeeAddress.Name = "txtEmployeeAddress";
+            this.txtEmployeeAddress.Size = new System.Drawing.Size(211, 35);
+            this.txtEmployeeAddress.TabIndex = 26;
+            this.txtEmployeeAddress.TextChanged += new System.EventHandler(this.txtEmployeeAddress_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label6.Location = new System.Drawing.Point(676, 96);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 22);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Địa Chỉ";
+            // 
+            // txtEmployeeSalary
+            // 
+            this.txtEmployeeSalary.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtEmployeeSalary.Location = new System.Drawing.Point(457, 121);
+            this.txtEmployeeSalary.Name = "txtEmployeeSalary";
+            this.txtEmployeeSalary.Size = new System.Drawing.Size(200, 35);
+            this.txtEmployeeSalary.TabIndex = 24;
+            this.txtEmployeeSalary.TextChanged += new System.EventHandler(this.txtEmployeeSalary_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label5.Location = new System.Drawing.Point(454, 96);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 22);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Lương";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightGray;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.button1.Location = new System.Drawing.Point(610, 236);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 45);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Lưu";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnEmployeeClear
+            // 
+            this.btnEmployeeClear.BackColor = System.Drawing.Color.LightGray;
+            this.btnEmployeeClear.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeClear.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnEmployeeClear.Location = new System.Drawing.Point(746, 236);
+            this.btnEmployeeClear.Name = "btnEmployeeClear";
+            this.btnEmployeeClear.Size = new System.Drawing.Size(114, 45);
+            this.btnEmployeeClear.TabIndex = 21;
+            this.btnEmployeeClear.Text = "Clear";
+            this.btnEmployeeClear.UseVisualStyleBackColor = false;
+            this.btnEmployeeClear.Click += new System.EventHandler(this.btnEmployeeClear_Click);
+            // 
+            // btnEmployeeAdd
+            // 
+            this.btnEmployeeAdd.BackColor = System.Drawing.Color.LightGray;
+            this.btnEmployeeAdd.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeAdd.ForeColor = System.Drawing.Color.Sienna;
+            this.btnEmployeeAdd.Location = new System.Drawing.Point(480, 44);
+            this.btnEmployeeAdd.Name = "btnEmployeeAdd";
+            this.btnEmployeeAdd.Size = new System.Drawing.Size(134, 44);
+            this.btnEmployeeAdd.TabIndex = 15;
+            this.btnEmployeeAdd.Text = "Thêm";
+            this.btnEmployeeAdd.UseVisualStyleBackColor = false;
+            this.btnEmployeeAdd.Click += new System.EventHandler(this.btnEmployeeAdd_Click);
+            // 
+            // btnEmployeeDelete
+            // 
+            this.btnEmployeeDelete.BackColor = System.Drawing.Color.LightGray;
+            this.btnEmployeeDelete.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeDelete.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnEmployeeDelete.Location = new System.Drawing.Point(620, 44);
+            this.btnEmployeeDelete.Name = "btnEmployeeDelete";
+            this.btnEmployeeDelete.Size = new System.Drawing.Size(129, 44);
+            this.btnEmployeeDelete.TabIndex = 12;
+            this.btnEmployeeDelete.Text = "Xóa";
+            this.btnEmployeeDelete.UseVisualStyleBackColor = false;
+            this.btnEmployeeDelete.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // btnEmployeeEdit
+            // 
+            this.btnEmployeeEdit.BackColor = System.Drawing.Color.LightGray;
+            this.btnEmployeeEdit.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeEdit.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnEmployeeEdit.Location = new System.Drawing.Point(755, 44);
+            this.btnEmployeeEdit.Name = "btnEmployeeEdit";
+            this.btnEmployeeEdit.Size = new System.Drawing.Size(140, 44);
+            this.btnEmployeeEdit.TabIndex = 11;
+            this.btnEmployeeEdit.Text = "Cập nhật";
+            this.btnEmployeeEdit.UseVisualStyleBackColor = false;
+            this.btnEmployeeEdit.Click += new System.EventHandler(this.btnEmployeeEdit_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label9.Location = new System.Drawing.Point(227, 96);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(62, 22);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Họ tên";
+            // 
+            // txtEmployeeName
+            // 
+            this.txtEmployeeName.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtEmployeeName.Location = new System.Drawing.Point(231, 121);
+            this.txtEmployeeName.Name = "txtEmployeeName";
+            this.txtEmployeeName.Size = new System.Drawing.Size(204, 35);
+            this.txtEmployeeName.TabIndex = 4;
+            this.txtEmployeeName.TextChanged += new System.EventHandler(this.txtEmployeeName_TextChanged);
+            // 
+            // txxtEmployeeID
+            // 
+            this.txxtEmployeeID.BackColor = System.Drawing.Color.LightSalmon;
+            this.txxtEmployeeID.Location = new System.Drawing.Point(9, 121);
+            this.txxtEmployeeID.Name = "txxtEmployeeID";
+            this.txxtEmployeeID.Size = new System.Drawing.Size(198, 35);
+            this.txxtEmployeeID.TabIndex = 3;
+            this.txxtEmployeeID.TextChanged += new System.EventHandler(this.txxtEmployeeID_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label10.Location = new System.Drawing.Point(5, 96);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(116, 22);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Mã nhân viên";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.NavajoWhite;
+            this.label11.Location = new System.Drawing.Point(18, 17);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(216, 26);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Thông tin nhân viên";
+            // 
+            // txtEmployeePhone
+            // 
+            this.txtEmployeePhone.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtEmployeePhone.Location = new System.Drawing.Point(483, 640);
+            this.txtEmployeePhone.Name = "txtEmployeePhone";
+            this.txtEmployeePhone.Size = new System.Drawing.Size(195, 35);
+            this.txtEmployeePhone.TabIndex = 6;
             // 
             // tcQLmenu
             // 
@@ -178,6 +507,27 @@
             this.tcQLmenu.TabIndex = 1;
             this.tcQLmenu.Text = "Quản Lý Menu";
             this.tcQLmenu.Click += new System.EventHandler(this.tcQLmenu_Click);
+            // 
+            // tbTimKiem
+            // 
+            this.tbTimKiem.BackColor = System.Drawing.Color.LightSalmon;
+            this.tbTimKiem.Location = new System.Drawing.Point(701, 371);
+            this.tbTimKiem.Name = "tbTimKiem";
+            this.tbTimKiem.Size = new System.Drawing.Size(174, 35);
+            this.tbTimKiem.TabIndex = 23;
+            // 
+            // btnTimKiem
+            // 
+            this.btnTimKiem.BackColor = System.Drawing.Color.LightGray;
+            this.btnTimKiem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKiem.ForeColor = System.Drawing.Color.Sienna;
+            this.btnTimKiem.Location = new System.Drawing.Point(561, 366);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(134, 44);
+            this.btnTimKiem.TabIndex = 23;
+            this.btnTimKiem.Text = "Tìm kiếm";
+            this.btnTimKiem.UseVisualStyleBackColor = false;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click_1);
             // 
             // cbFilter
             // 
@@ -218,6 +568,8 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.SaddleBrown;
+            this.panel5.Controls.Add(this.tbSoLuong);
+            this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.btnLuu);
             this.panel5.Controls.Add(this.btnClear);
             this.panel5.Controls.Add(this.cbLoai);
@@ -237,6 +589,26 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(902, 258);
             this.panel5.TabIndex = 15;
+            // 
+            // tbSoLuong
+            // 
+            this.tbSoLuong.BackColor = System.Drawing.Color.LightSalmon;
+            this.tbSoLuong.Location = new System.Drawing.Point(587, 130);
+            this.tbSoLuong.Name = "tbSoLuong";
+            this.tbSoLuong.Size = new System.Drawing.Size(98, 35);
+            this.tbSoLuong.TabIndex = 24;
+            this.tbSoLuong.TextChanged += new System.EventHandler(this.tbSoLuong_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label4.Location = new System.Drawing.Point(584, 105);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 22);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Số lượng";
             // 
             // btnLuu
             // 
@@ -270,7 +642,7 @@
             this.cbLoai.Items.AddRange(new object[] {
             "Đồ ăn",
             "Đồ uống"});
-            this.cbLoai.Location = new System.Drawing.Point(688, 130);
+            this.cbLoai.Location = new System.Drawing.Point(719, 130);
             this.cbLoai.Name = "cbLoai";
             this.cbLoai.Size = new System.Drawing.Size(175, 35);
             this.cbLoai.TabIndex = 20;
@@ -319,7 +691,7 @@
             this.lbDanhMuc.AutoSize = true;
             this.lbDanhMuc.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDanhMuc.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbDanhMuc.Location = new System.Drawing.Point(724, 105);
+            this.lbDanhMuc.Location = new System.Drawing.Point(755, 105);
             this.lbDanhMuc.Name = "lbDanhMuc";
             this.lbDanhMuc.Size = new System.Drawing.Size(88, 22);
             this.lbDanhMuc.TabIndex = 9;
@@ -330,7 +702,7 @@
             this.lbDonGia.AutoSize = true;
             this.lbDonGia.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDonGia.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbDonGia.Location = new System.Drawing.Point(476, 105);
+            this.lbDonGia.Location = new System.Drawing.Point(389, 105);
             this.lbDonGia.Name = "lbDonGia";
             this.lbDonGia.Size = new System.Drawing.Size(73, 22);
             this.lbDonGia.TabIndex = 7;
@@ -339,7 +711,7 @@
             // tbGia
             // 
             this.tbGia.BackColor = System.Drawing.Color.LightSalmon;
-            this.tbGia.Location = new System.Drawing.Point(480, 130);
+            this.tbGia.Location = new System.Drawing.Point(393, 130);
             this.tbGia.Name = "tbGia";
             this.tbGia.Size = new System.Drawing.Size(174, 35);
             this.tbGia.TabIndex = 6;
@@ -349,7 +721,7 @@
             this.lbTenMon.AutoSize = true;
             this.lbTenMon.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTenMon.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbTenMon.Location = new System.Drawing.Point(245, 105);
+            this.lbTenMon.Location = new System.Drawing.Point(201, 105);
             this.lbTenMon.Name = "lbTenMon";
             this.lbTenMon.Size = new System.Drawing.Size(40, 22);
             this.lbTenMon.TabIndex = 5;
@@ -358,7 +730,7 @@
             // tbTenMon
             // 
             this.tbTenMon.BackColor = System.Drawing.Color.LightSalmon;
-            this.tbTenMon.Location = new System.Drawing.Point(249, 130);
+            this.tbTenMon.Location = new System.Drawing.Point(205, 130);
             this.tbTenMon.Name = "tbTenMon";
             this.tbTenMon.Size = new System.Drawing.Size(167, 35);
             this.tbTenMon.TabIndex = 4;
@@ -571,26 +943,25 @@
             this.tpDashBoard.TabIndex = 5;
             this.tpDashBoard.Tag = "";
             // 
-            // btnTimKiem
+            // txtPhone
             // 
-            this.btnTimKiem.BackColor = System.Drawing.Color.LightGray;
-            this.btnTimKiem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKiem.ForeColor = System.Drawing.Color.Sienna;
-            this.btnTimKiem.Location = new System.Drawing.Point(561, 366);
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(134, 44);
-            this.btnTimKiem.TabIndex = 23;
-            this.btnTimKiem.Text = "Tìm kiếm";
-            this.btnTimKiem.UseVisualStyleBackColor = false;
-            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click_1);
+            this.txtPhone.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtPhone.Location = new System.Drawing.Point(237, 199);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(198, 35);
+            this.txtPhone.TabIndex = 32;
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
-            // tbTimKiem
+            // label15
             // 
-            this.tbTimKiem.BackColor = System.Drawing.Color.LightSalmon;
-            this.tbTimKiem.Location = new System.Drawing.Point(701, 370);
-            this.tbTimKiem.Name = "tbTimKiem";
-            this.tbTimKiem.Size = new System.Drawing.Size(174, 35);
-            this.tbTimKiem.TabIndex = 23;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label15.Location = new System.Drawing.Point(233, 174);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(114, 22);
+            this.label15.TabIndex = 31;
+            this.label15.Text = "Số điện thoại";
             // 
             // fAdmin
             // 
@@ -612,6 +983,11 @@
             this.pnAdmin.ResumeLayout(false);
             this.pnAdmin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tpQLNV.ResumeLayout(false);
+            this.tpQLNV.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeView)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.tcQLmenu.ResumeLayout(false);
             this.tcQLmenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgFood)).EndInit();
@@ -677,5 +1053,34 @@
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.TextBox tbTimKiem;
         private System.Windows.Forms.Button btnTimKiem;
+        private System.Windows.Forms.TextBox tbSoLuong;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.TextBox txtEmployeeSalary;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnEmployeeClear;
+        private System.Windows.Forms.Button btnEmployeeAdd;
+        private System.Windows.Forms.Button btnEmployeeDelete;
+        private System.Windows.Forms.Button btnEmployeeEdit;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtEmployeePhone;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtEmployeeName;
+        private System.Windows.Forms.TextBox txxtEmployeeID;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtEmployeeAddress;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tbEmployeeSearch;
+        private System.Windows.Forms.Button btnEmployeeSearch;
+        private System.Windows.Forms.DataGridView dgvEmployeeView;
+        private System.Windows.Forms.DateTimePicker dtpEmployeeStart;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtTenChucNang;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.Label label15;
     }
 }

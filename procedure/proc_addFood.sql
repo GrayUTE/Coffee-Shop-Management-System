@@ -6,15 +6,20 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROCEDURE [dbo].[usp_addFood]
-    @TenSP NVARCHAR(100),
+-- Sửa đổi Stored Procedure thêm món
+ALTER PROCEDURE usp_addFood
+    @TenSP NVARCHAR(MAX),
     @LoaiSP NVARCHAR(50),
-    @DonGia Float
+    @DonGia FLOAT,
+    @SoLuong INT -- THÊM: Tham số Số lượng mới
 AS
 BEGIN
-    INSERT INTO SanPham (TenSP, LoaiSP, DonGia)
-    VALUES (@TenSP, @LoaiSP, @DonGia);
-END;
+    INSERT INTO SanPham (TenSP, LoaiSP, DonGia, SoLuong) -- THÊM: Cột SoLuong
+    VALUES (@TenSP, @LoaiSP, @DonGia, @SoLuong);       -- THÊM: Giá trị @SoLuong
+
+    -- Trả về MaSP vừa được thêm
+    SELECT SCOPE_IDENTITY();
+END
 
 --Fix lại lỗi identity tăng
 

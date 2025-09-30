@@ -47,3 +47,7 @@ BEGIN
         OR (@IsNumeric = 1 AND CAST(DonGia AS NVARCHAR) = @Keyword);
 END -- Lỗi Msg 102 đã được khắc phục sau khi sửa khối lệnh
 GO
+
+USE QuanLyQuanCafe
+GO
+

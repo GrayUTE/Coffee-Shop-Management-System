@@ -47,11 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BUS\AccountBUS.cs" />
+    <Compile Include="BUS\EmployeeBUS.cs" />
     <Compile Include="BUS\FoodBUS.cs" />
     <Compile Include="DAO\AccountDAO.cs" />
+    <Compile Include="DAO\EmployeeDAO.cs" />
     <Compile Include="DAO\FoodDAO.cs" />
     <Compile Include="DataBase\DatabaseConnection.cs" />
     <Compile Include="DTO\AccountDTO.cs" />
+    <Compile Include="DTO\EmployeeDTO.cs" />
     <Compile Include="DTO\FoodDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,5 +1,4 @@
-﻿
-using QuanLyQuanCafe.DataBase;
+﻿using QuanLyQuanCafe.DataBase;
 using QuanLyQuanCafe.DTO;
 using System;
 using System.Collections.Generic;
@@ -40,7 +39,11 @@ namespace QuanLyQuanCafe.DAO
                                 string name = reader["TenSP"].ToString();
                                 string category = reader["LoaiSP"].ToString();
                                 float price = Convert.ToSingle(reader["DonGia"]);
-                                FoodDTO food = new FoodDTO(id, name, category, price);
+                                // BỔ SUNG: Đọc SoLuong
+                                int soLuong = Convert.ToInt32(reader["SoLuong"]);
+
+                                // SỬA: Dùng constructor mới có SoLuong
+                                FoodDTO food = new FoodDTO(id, name, category, price, soLuong);
                                 foodList.Add(food);
                             }
                         }
@@ -55,9 +58,10 @@ namespace QuanLyQuanCafe.DAO
             return foodList;
         }
 
-        public int AddFood(string ten, string loai, float gia)
+        // LOGIC CHÍNH: Kiểm tra trùng tên/giá để UPDATE hoặc INSERT
+        public int AddFood(string ten, string loai, float gia, int soLuong)
         {
-            if (string.IsNullOrWhiteSpace(ten) || string.IsNullOrWhiteSpace(loai) || gia < 0)
+            if (string.IsNullOrWhiteSpace(ten) || string.IsNullOrWhiteSpace(loai) || gia < 0 || soLuong <= 0)
             {
                 Console.WriteLine("Tham số đầu vào không hợp lệ cho AddFood");
                 return -1;
@@ -69,12 +73,45 @@ namespace QuanLyQuanCafe.DAO
                 using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
+
+                    // 1. KIỂM TRA MÓN ĂN TRÙNG TÊN, LOẠI VÀ TRÙNG GIÁ
+                    string checkQuery = "SELECT MaSP FROM SanPham WHERE TenSP = @ten AND LoaiSP = @loai AND DonGia = @gia";
+
+                    using (SqlCommand checkCommand = new SqlCommand(checkQuery, conn))
+                    {
+                        checkCommand.Parameters.AddWithValue("@ten", ten);
+                        checkCommand.Parameters.AddWithValue("@loai", loai);
+                        checkCommand.Parameters.AddWithValue("@gia", gia);
+
+                        using (SqlDataReader reader = checkCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // TRƯỜNG HỢP 1: MÓN TRÙNG ĐÃ TỒN TẠI -> TĂNG SỐ LƯỢNG
+                                int existingMaSP = Convert.ToInt32(reader["MaSP"]);
+                                reader.Close(); // PHẢI ĐÓNG READER TRƯỚC KHI THỰC HIỆN LỆNH MỚI
+
+                                string updateQuery = "UPDATE SanPham SET SoLuong = SoLuong + @soLuongThem WHERE MaSP = @maSP";
+                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, conn))
+                                {
+                                    updateCommand.Parameters.AddWithValue("@soLuongThem", soLuong); // Cộng thêm số lượng mới
+                                    updateCommand.Parameters.AddWithValue("@maSP", existingMaSP);
+                                    updateCommand.ExecuteNonQuery();
+
+                                    return existingMaSP; // Trả về ID của món cũ đã được cập nhật
+                                }
+                            }
+                        }
+                    }
+
+                    // 2. TRƯỜNG HỢP 2: KHÔNG TRÙNG -> CHÈN MÓN MỚI (Gọi Stored Procedure)
                     using (SqlCommand command = new SqlCommand("usp_addFood", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@TenSP", ten);
                         command.Parameters.AddWithValue("@LoaiSP", loai);
                         command.Parameters.AddWithValue("@DonGia", gia);
+                        command.Parameters.AddWithValue("@SoLuong", soLuong); // BỔ SUNG: Truyền SoLuong
 
                         object result = command.ExecuteScalar();
                         return result != null ? Convert.ToInt32(result) : -1;
@@ -84,15 +121,16 @@ namespace QuanLyQuanCafe.DAO
             catch (Exception ex)
             {
                 Console.WriteLine($"Lỗi trong AddFood: {ex.Message}");
+                MessageBox.Show($"Lỗi khi thêm/cập nhật món ăn: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
             }
         }
 
 
-
-        public bool UpdateFood(int maSP, string ten, string loai, float gia)
+        // SỬA ĐỔI HÀM UPDATE FOOD: Thêm tham số soLuong
+        public bool UpdateFood(int maSP, string ten, string loai, float gia, int soLuong)
         {
-            if (maSP <= 0 || string.IsNullOrWhiteSpace(ten) || string.IsNullOrWhiteSpace(loai) || gia < 0)
+            if (maSP <= 0 || string.IsNullOrWhiteSpace(ten) || string.IsNullOrWhiteSpace(loai) || gia < 0 || soLuong < 0)
             {
                 Console.WriteLine("Tham số đầu vào không hợp lệ cho UpdateFood");
                 return false;
@@ -111,14 +149,16 @@ namespace QuanLyQuanCafe.DAO
                         command.Parameters.AddWithValue("@TenSP", ten);
                         command.Parameters.AddWithValue("@LoaiSP", loai);
                         command.Parameters.AddWithValue("@DonGia", gia);
-                        command.ExecuteNonQuery();
-                        return true;
+                        command.Parameters.AddWithValue("@SoLuong", soLuong); // BỔ SUNG: Truyền SoLuong
+
+                        return command.ExecuteNonQuery() > 0;
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Lỗi trong UpdateFood: {ex.Message}");
+                MessageBox.Show($"Lỗi khi cập nhật món ăn: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -141,14 +181,14 @@ namespace QuanLyQuanCafe.DAO
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@MaSP", maSP);
-                        command.ExecuteNonQuery();
-                        return true;
+                        return command.ExecuteNonQuery() > 0;
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Lỗi trong DeleteFood: {ex.Message}");
+                MessageBox.Show($"Lỗi khi xóa món ăn: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -167,7 +207,7 @@ namespace QuanLyQuanCafe.DAO
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@FilterType", loai ?? "Tất cả");
-                        Console.WriteLine($"Gọi usp_filterFood với FilterType: '{loai}'");
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -176,7 +216,11 @@ namespace QuanLyQuanCafe.DAO
                                 string name = reader["TenSP"].ToString();
                                 string category = reader["LoaiSP"].ToString();
                                 float price = Convert.ToSingle(reader["DonGia"]);
-                                FoodDTO food = new FoodDTO(id, name, category, price);
+                                // BỔ SUNG: Đọc SoLuong
+                                int soLuong = Convert.ToInt32(reader["SoLuong"]);
+
+                                // SỬA: Dùng constructor mới có SoLuong
+                                FoodDTO food = new FoodDTO(id, name, category, price, soLuong);
                                 foodList.Add(food);
                             }
                         }
@@ -186,9 +230,9 @@ namespace QuanLyQuanCafe.DAO
             catch (SqlException ex)
             {
                 string errorDetails = $"Lỗi SQL trong FilterFood: {ex.Message}\n" +
-                                      $"Error Number: {ex.Number}\n" +
-                                      $"Procedure: {ex.Procedure}\n" +
-                                      $"Line: {ex.LineNumber}";
+                                        $"Error Number: {ex.Number}\n" +
+                                        $"Procedure: {ex.Procedure}\n" +
+                                        $"Line: {ex.LineNumber}";
                 Console.WriteLine(errorDetails);
                 MessageBox.Show($"Lỗi khi lọc dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return foodList;
@@ -202,6 +246,7 @@ namespace QuanLyQuanCafe.DAO
 
             return foodList;
         }
+
         public int GetLastFoodId()
         {
             DatabaseConnection db = new DatabaseConnection();
@@ -251,7 +296,11 @@ namespace QuanLyQuanCafe.DAO
                                 string name = reader["TenSP"].ToString();
                                 string category = reader["LoaiSP"].ToString();
                                 float price = Convert.ToSingle(reader["DonGia"]);
-                                foodList.Add(new FoodDTO(id, name, category, price));
+                                // BỔ SUNG: Đọc SoLuong
+                                int soLuong = Convert.ToInt32(reader["SoLuong"]);
+
+                                // SỬA: Dùng constructor mới có SoLuong
+                                foodList.Add(new FoodDTO(id, name, category, price, soLuong));
                             }
                         }
                     }

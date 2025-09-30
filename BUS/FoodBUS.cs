@@ -14,7 +14,7 @@ namespace QuanLyQuanCafe.BUS
     public class FoodBUS
     {
         private static FoodBUS instance;
-        // KHÔNG CÒN BIẾN TĨNH MaxFoodId
+        private static int MaxFoodId; // Biến tĩnh để theo dõi MaxID
 
         public static FoodBUS Instance
         {
@@ -22,13 +22,13 @@ namespace QuanLyQuanCafe.BUS
             private set { instance = value; }
         }
 
-        //private FoodBUS()
-        //{
-        //    // Bỏ InitializeMaxFoodId()
-        //}
+        private FoodBUS()
+        {
+            // Khởi tạo MaxFoodId từ cơ sở dữ liệu khi tạo instance
+            MaxFoodId = InitializeMaxFoodId();
+        }
 
-        // HÀM QUAN TRỌNG: Luôn truy vấn DB để lấy MaSP lớn nhất hiện tại
-        public int GetMaxFoodId()
+        private int InitializeMaxFoodId()
         {
             DatabaseConnection db = new DatabaseConnection();
             try
@@ -36,19 +36,18 @@ namespace QuanLyQuanCafe.BUS
                 using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
-                    // Lấy MAX(MaSP) hiện tại từ DB. Nếu bảng trống, trả về 0.
                     using (SqlCommand command = new SqlCommand("SELECT ISNULL(MAX(MaSP), 0) FROM SanPham", conn))
                     {
                         var result = command.ExecuteScalar();
                         int maxId = Convert.ToInt32(result);
-                        Console.WriteLine($"GetMaxFoodId (DB Query): Trả về MaxFoodId = {maxId}");
+                        Console.WriteLine($"InitializeMaxFoodId: MaxFoodId = {maxId}");
                         return maxId;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Lỗi khi lấy MaxFoodId từ DB: {ex.Message}");
+                Console.WriteLine($"Lỗi khi khởi tạo MaxFoodId: {ex.Message}");
                 return 0;
             }
         }
@@ -58,23 +57,35 @@ namespace QuanLyQuanCafe.BUS
             return FoodDAO.Instance.GetFoodList();
         }
 
-        public int AddFood(string ten, string loai, float gia)
+        // ĐÃ CẬP NHẬT: Thêm tham số soLuong và truyền vào FoodDAO
+        public int AddFood(string ten, string loai, float gia, int soLuong)
         {
-            int newId = FoodDAO.Instance.AddFood(ten, loai, gia);
-            // KHÔNG CẦN CẬP NHẬT BIẾN TĨNH
+            int newId = FoodDAO.Instance.AddFood(ten, loai, gia, soLuong); // Truyền thêm soLuong
+            if (newId > 0)
+            {
+                // Nếu là món mới (ID lớn hơn ID tối đa hiện tại), cập nhật MaxFoodId
+                if (newId > MaxFoodId)
+                {
+                    MaxFoodId = newId;
+                }
+            }
             return newId;
         }
 
-
-        public bool UpdateFood(int maSP, string ten, string loai, float gia)
+        // ĐÃ CẬP NHẬT: Thêm tham số soLuong và truyền vào FoodDAO
+        public bool UpdateFood(int maSP, string ten, string loai, float gia, int soLuong)
         {
-            return FoodDAO.Instance.UpdateFood(maSP, ten, loai, gia);
+            return FoodDAO.Instance.UpdateFood(maSP, ten, loai, gia, soLuong); // Truyền thêm soLuong
         }
 
         public bool DeleteFood(int maSP)
         {
             bool success = FoodDAO.Instance.DeleteFood(maSP);
-            // KHÔNG CẦN CẬP NHẬT BIẾN TĨNH
+            if (success)
+            {
+                MaxFoodId = InitializeMaxFoodId(); // Cập nhật MaxFoodId sau khi xóa
+                Console.WriteLine($"DeleteFood: MaxFoodId cập nhật thành {MaxFoodId}");
+            }
             return success;
         }
 
@@ -89,16 +100,17 @@ namespace QuanLyQuanCafe.BUS
             return FoodDAO.Instance.FilterFood(loai);
         }
 
+        // ĐÃ BỔ SUNG: Phương thức SearchFood
         public List<FoodDTO> SearchFood(string keyword)
         {
-            keyword = keyword?.Trim();
-            if (string.IsNullOrEmpty(keyword))
-            {
-                // Nếu từ khóa rỗng, trả về toàn bộ danh sách
-                return GetFoodList();
-            }
-
+            // Gọi phương thức SearchFood đã được thêm vào FoodDAO
             return FoodDAO.Instance.SearchFood(keyword);
+        }
+
+        public int GetMaxFoodId()
+        {
+            Console.WriteLine($"GetMaxFoodId: Trả về MaxFoodId = {MaxFoodId}");
+            return MaxFoodId;
         }
     }
 }
