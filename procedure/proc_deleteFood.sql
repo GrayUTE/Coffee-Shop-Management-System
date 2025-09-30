@@ -1,0 +1,19 @@
+USE QuanLyQuanCafe
+GO
+
+DROP PROCEDURE IF EXISTS usp_deleteFood;
+GO 
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE usp_deleteFood
+    @MaSP INT
+AS
+BEGIN
+    DELETE FROM SanPham
+    WHERE MaSP = @MaSP;
+END;

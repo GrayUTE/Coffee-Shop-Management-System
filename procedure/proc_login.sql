@@ -1,0 +1,23 @@
+USE QuanLyQuanCafe
+GO
+
+DROP PROCEDURE IF EXISTS usp_Login;
+GO 
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE USP_Login
+    @userName NVARCHAR(50),
+    @passWord NVARCHAR(50)
+AS
+BEGIN
+    SELECT TK.ID, CN.TenChucNang
+    FROM TaiKhoan TK
+    JOIN ChiTietChucNang CTCN ON TK.ID = CTCN.ID
+    JOIN ChucNang CN ON CTCN.MaCN = CN.MaCN
+    WHERE TK.ID = @userName AND TK.MatKhau = @passWord;
+END;
