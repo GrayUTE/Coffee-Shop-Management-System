@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanCafe.BUS;
+using QuanLyQuanCafe.DAO;
 using QuanLyQuanCafe.DTO;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,11 @@ namespace QuanLyQuanCafe
             InitializeComponent();
             LoadFoodList();
             LoadEmployeeList(); // Khởi tạo Load Employee List
+            LoadCustomerList(); // Khởi tạo Load Customer List
             SetupComboBoxes();
             UpdateMaSP(); // Ban đầu hiển thị MaSP tiếp theo
             UpdateEmployeeID(); // Ban đầu hiển thị MaNV tiếp theo
+            UpdateCustomerID(); // Ban đầu hiển thị MaKH tiếp theo
             lastAddedFoodId = FoodBUS.Instance.GetMaxFoodId(); // Khởi tạo với MaxFoodId hiện tại
         }
 
@@ -117,7 +120,7 @@ namespace QuanLyQuanCafe
             dgFood.Columns["MaSP"].Width = 100;
             dgFood.Columns["TenSP"].Width = 150;
             dgFood.Columns["LoaiSP"].Width = 100;
-            dgFood.Columns["DonGia"].Width = 100;
+            dgFood.Columns["DonGia"].Width = 124;
             if (soLuongColumn != null)
             {
                 soLuongColumn.Width = 100;
@@ -368,7 +371,7 @@ namespace QuanLyQuanCafe
 
             dgvEmployeeView.Columns["MaNV"].HeaderText = "Mã NV";
             dgvEmployeeView.Columns["HoTen"].HeaderText = "Họ Tên";
-            dgvEmployeeView.Columns["SDT"].HeaderText = "SĐT (Tên đăng nhập)";
+            dgvEmployeeView.Columns["SDT"].HeaderText = "SĐT";
             dgvEmployeeView.Columns["NgayVaoLam"].HeaderText = "Ngày vào làm";
             dgvEmployeeView.Columns["Luong"].HeaderText = "Lương";
             dgvEmployeeView.Columns["DiaChi"].HeaderText = "Địa chỉ";
@@ -633,6 +636,222 @@ namespace QuanLyQuanCafe
         }
 
         private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        // =======================================================
+        // # REGION: QUẢN LÝ KHÁCH HÀNG (CUSTOMER)
+        // =======================================================
+
+        private void LoadCustomerList()
+        {
+            List<CustomerDTO> customerList = CustomerBUS.Instance.GetCustomerList();
+            dgvCustomerList.DataSource = customerList;
+            if (dgvCustomerList.Columns.Contains("MaKhachHang"))
+                dgvCustomerList.Columns["MaKhachHang"].HeaderText = "Mã KH";
+            if (dgvCustomerList.Columns.Contains("HoTen"))
+                dgvCustomerList.Columns["HoTen"].HeaderText = "Họ Tên";
+            if (dgvCustomerList.Columns.Contains("SoDienThoai"))
+                dgvCustomerList.Columns["SoDienThoai"].HeaderText = "SĐT";
+            if (dgvCustomerList.Columns.Contains("DiemTichLuy"))
+                dgvCustomerList.Columns["DiemTichLuy"].HeaderText = "Điểm tích lũy";
+
+            dgvCustomerList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dgvCustomerList.ScrollBars = ScrollBars.Both;
+            if (dgvCustomerList.Columns.Contains("MaKhachHang"))
+                dgvCustomerList.Columns["MaKhachHang"].Width = 100;
+            if (dgvCustomerList.Columns.Contains("HoTen"))
+                dgvCustomerList.Columns["HoTen"].Width = 155;
+            if (dgvCustomerList.Columns.Contains("SoDienThoai"))
+                dgvCustomerList.Columns["SoDienThoai"].Width = 120;
+            if (dgvCustomerList.Columns.Contains("DiemTichLuy"))
+                dgvCustomerList.Columns["DiemTichLuy"].Width = 125;
+
+            dgvCustomerList.AllowUserToAddRows = false;
+            dgvCustomerList.ReadOnly = true;
+            dgvCustomerList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCustomerList.MultiSelect = false;
+            dgvCustomerList.RowHeadersVisible = false;
+            dgvCustomerList.Refresh();
+        }
+
+        private void UpdateCustomerID()
+        {
+            int maxId = CustomerBUS.Instance.GetMaxCustomerId();
+            txtMaKhachHang.Text = (maxId + 1).ToString();
+            txtMaKhachHang.ReadOnly = true;
+        }
+
+        private void dgvCustomerList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvCustomerList.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dgvCustomerList.SelectedRows[0];
+                txtMaKhachHang.Text = row.Cells["MaKhachHang"].Value?.ToString() ?? "";
+                txtHoTen.Text = row.Cells["HoTen"].Value?.ToString() ?? "";
+                txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value?.ToString() ?? "";
+                txtDiemTichLuy.Text = row.Cells["DiemTichLuy"].Value?.ToString() ?? "0";
+            }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            string hoTen = txtHoTen.Text.Trim();
+            string soDienThoai = txtSoDienThoai.Text.Trim();
+            if (!int.TryParse(txtDiemTichLuy.Text.Trim(), out int diemTichLuy))
+            {
+                MessageBox.Show("Điểm tích lũy phải là số nguyên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int newMaKhachHang;
+            string errorMessage;
+            bool success = CustomerBUS.Instance.AddCustomer(hoTen, soDienThoai, diemTichLuy, out newMaKhachHang, out errorMessage);
+            if (success)
+            {
+                MessageBox.Show($"Thêm khách hàng thành công! Mã KH: {newMaKhachHang}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCustomerList();
+                UpdateCustomerID();
+                btnClearKH_Click(null, null);
+            }
+            else
+            {
+                MessageBox.Show($"Thêm khách hàng thất bại: {errorMessage}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (dgvCustomerList.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một khách hàng để xóa.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int maKhachHang = Convert.ToInt32(dgvCustomerList.SelectedRows[0].Cells["MaKhachHang"].Value);
+            DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa khách hàng {maKhachHang} không?",
+                                                 "Xác nhận xóa",
+                                                 MessageBoxButtons.YesNo,
+                                                 MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+                return;
+
+            string errorMessage;
+            bool success = CustomerBUS.Instance.DeleteCustomer(maKhachHang, out errorMessage);
+            if (success)
+            {
+                MessageBox.Show("Xóa khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCustomerList();
+                UpdateCustomerID();
+                btnClearKH_Click(null, null);
+            }
+            else
+            {
+                MessageBox.Show($"Xóa khách hàng thất bại: {errorMessage}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+            if (dgvCustomerList.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một khách hàng để cập nhật.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!int.TryParse(txtMaKhachHang.Text.Trim(), out int maKhachHang) || maKhachHang <= 0)
+            {
+                MessageBox.Show("Mã khách hàng không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string hoTen = txtHoTen.Text.Trim();
+            string soDienThoai = txtSoDienThoai.Text.Trim();
+            if (string.IsNullOrWhiteSpace(hoTen) || string.IsNullOrWhiteSpace(soDienThoai))
+            {
+                MessageBox.Show("Họ tên và số điện thoại không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!int.TryParse(txtDiemTichLuy.Text.Trim(), out int diemTichLuy) || diemTichLuy < 0)
+            {
+                MessageBox.Show("Điểm tích lũy phải là số nguyên không âm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string errorMessage;
+            bool success = CustomerBUS.Instance.UpdateCustomer(maKhachHang, hoTen, soDienThoai, diemTichLuy, out errorMessage);
+            if (success)
+            {
+                MessageBox.Show("Cập nhật khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCustomerList();
+                btnClearKH_Click(null, null);
+            }
+            else
+            {
+                MessageBox.Show($"Cập nhật khách hàng thất bại: {errorMessage}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtMaKhachHang_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtHoTen_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtSoDienThoai_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtDiemTichLuy_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void btnLuuKH_Click(object sender, EventArgs e)
+        {
+            LoadCustomerList();
+            UpdateCustomerID();
+            MessageBox.Show("Danh sách khách hàng đã được làm mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnClearKH_Click(object sender, EventArgs e)
+        {
+            UpdateCustomerID();
+            txtHoTen.Text = "";
+            txtSoDienThoai.Text = "";
+            txtDiemTichLuy.Text = "0";
+            dgvCustomerList.ClearSelection();
+        }
+
+        private void btnTimKiemKH_Click(object sender, EventArgs e)
+        {
+            string keyword = txtTimKiem.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                LoadCustomerList();
+                MessageBox.Show("Vui lòng nhập từ khóa tìm kiếm (Tên, SĐT, Mã KH).", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            List<CustomerDTO> searchResult = CustomerBUS.Instance.SearchCustomers(keyword);
+
+            if (searchResult.Count > 0)
+            {
+                dgvCustomerList.DataSource = null;
+                dgvCustomerList.DataSource = searchResult;
+                MessageBox.Show($"Đã tìm thấy {searchResult.Count} khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                dgvCustomerList.DataSource = null;
+                MessageBox.Show("Không tìm thấy khách hàng nào phù hợp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
         }
     }

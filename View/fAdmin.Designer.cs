@@ -41,6 +41,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtTenChucNang = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -99,10 +101,30 @@
             this.lblRevenue = new System.Windows.Forms.Label();
             this.tpDashBoard = new System.Windows.Forms.TabControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.txtTimKiem = new System.Windows.Forms.TextBox();
+            this.btnTimKiemKH = new System.Windows.Forms.Button();
+            this.dgvCustomerList = new System.Windows.Forms.DataGridView();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.txtSoDienThoai = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtDiemTichLuy = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.btnLuuKH = new System.Windows.Forms.Button();
+            this.btnClearKH = new System.Windows.Forms.Button();
+            this.btnThem = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnCapNhat = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtHoTen = new System.Windows.Forms.TextBox();
+            this.txtMaKhachHang = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.pnAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tpQLKH.SuspendLayout();
             this.tpQLNV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeView)).BeginInit();
             this.panel6.SuspendLayout();
@@ -115,6 +137,8 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tpDashBoard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomerList)).BeginInit();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -175,6 +199,13 @@
             // tpQLKH
             // 
             this.tpQLKH.BackColor = System.Drawing.Color.Sienna;
+            this.tpQLKH.Controls.Add(this.txtTimKiem);
+            this.tpQLKH.Controls.Add(this.btnTimKiemKH);
+            this.tpQLKH.Controls.Add(this.dgvCustomerList);
+            this.tpQLKH.Controls.Add(this.label16);
+            this.tpQLKH.Controls.Add(this.label17);
+            this.tpQLKH.Controls.Add(this.panel7);
+            this.tpQLKH.Controls.Add(this.textBox8);
             this.tpQLKH.Location = new System.Drawing.Point(4, 36);
             this.tpQLKH.Name = "tpQLKH";
             this.tpQLKH.Padding = new System.Windows.Forms.Padding(3);
@@ -285,6 +316,26 @@
             this.panel6.Size = new System.Drawing.Size(902, 295);
             this.panel6.TabIndex = 16;
             this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtPhone.Location = new System.Drawing.Point(237, 199);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(198, 35);
+            this.txtPhone.TabIndex = 32;
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label15.Location = new System.Drawing.Point(233, 174);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(114, 22);
+            this.label15.TabIndex = 31;
+            this.label15.Text = "Số điện thoại";
             // 
             // txtTenChucNang
             // 
@@ -943,25 +994,248 @@
             this.tpDashBoard.TabIndex = 5;
             this.tpDashBoard.Tag = "";
             // 
-            // txtPhone
+            // txtTimKiem
             // 
-            this.txtPhone.BackColor = System.Drawing.Color.LightSalmon;
-            this.txtPhone.Location = new System.Drawing.Point(237, 199);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(198, 35);
-            this.txtPhone.TabIndex = 32;
-            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
+            this.txtTimKiem.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtTimKiem.Location = new System.Drawing.Point(687, 379);
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(174, 35);
+            this.txtTimKiem.TabIndex = 34;
+            this.txtTimKiem.TextChanged += new System.EventHandler(this.txtTimKiem_TextChanged);
             // 
-            // label15
+            // btnTimKiemKH
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label15.Location = new System.Drawing.Point(233, 174);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(114, 22);
-            this.label15.TabIndex = 31;
-            this.label15.Text = "Số điện thoại";
+            this.btnTimKiemKH.BackColor = System.Drawing.Color.LightGray;
+            this.btnTimKiemKH.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKiemKH.ForeColor = System.Drawing.Color.Sienna;
+            this.btnTimKiemKH.Location = new System.Drawing.Point(544, 374);
+            this.btnTimKiemKH.Name = "btnTimKiemKH";
+            this.btnTimKiemKH.Size = new System.Drawing.Size(134, 44);
+            this.btnTimKiemKH.TabIndex = 35;
+            this.btnTimKiemKH.Text = "Tìm kiếm";
+            this.btnTimKiemKH.UseVisualStyleBackColor = false;
+            this.btnTimKiemKH.Click += new System.EventHandler(this.btnTimKiemKH_Click);
+            // 
+            // dgvCustomerList
+            // 
+            this.dgvCustomerList.BackgroundColor = System.Drawing.Color.SaddleBrown;
+            this.dgvCustomerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCustomerList.Location = new System.Drawing.Point(49, 445);
+            this.dgvCustomerList.Name = "dgvCustomerList";
+            this.dgvCustomerList.RowHeadersWidth = 62;
+            this.dgvCustomerList.RowTemplate.Height = 28;
+            this.dgvCustomerList.Size = new System.Drawing.Size(812, 336);
+            this.dgvCustomerList.TabIndex = 33;
+            this.dgvCustomerList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomerList_CellContentClick);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.NavajoWhite;
+            this.label16.Location = new System.Drawing.Point(6, 23);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(347, 32);
+            this.label16.TabIndex = 32;
+            this.label16.Text = "QUẢN LÝ KHÁCH HÀNG";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label17.Location = new System.Drawing.Point(479, 615);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(114, 22);
+            this.label17.TabIndex = 30;
+            this.label17.Text = "Số điện thoại";
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.SaddleBrown;
+            this.panel7.Controls.Add(this.txtSoDienThoai);
+            this.panel7.Controls.Add(this.label18);
+            this.panel7.Controls.Add(this.txtDiemTichLuy);
+            this.panel7.Controls.Add(this.label21);
+            this.panel7.Controls.Add(this.btnLuuKH);
+            this.panel7.Controls.Add(this.btnClearKH);
+            this.panel7.Controls.Add(this.btnThem);
+            this.panel7.Controls.Add(this.btnXoa);
+            this.panel7.Controls.Add(this.btnCapNhat);
+            this.panel7.Controls.Add(this.label23);
+            this.panel7.Controls.Add(this.txtHoTen);
+            this.panel7.Controls.Add(this.txtMaKhachHang);
+            this.panel7.Controls.Add(this.label24);
+            this.panel7.Controls.Add(this.label25);
+            this.panel7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel7.Location = new System.Drawing.Point(3, 73);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(902, 270);
+            this.panel7.TabIndex = 31;
+            // 
+            // txtSoDienThoai
+            // 
+            this.txtSoDienThoai.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtSoDienThoai.Location = new System.Drawing.Point(458, 121);
+            this.txtSoDienThoai.Name = "txtSoDienThoai";
+            this.txtSoDienThoai.Size = new System.Drawing.Size(198, 35);
+            this.txtSoDienThoai.TabIndex = 32;
+            this.txtSoDienThoai.TextChanged += new System.EventHandler(this.txtSoDienThoai_TextChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label18.Location = new System.Drawing.Point(454, 96);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(114, 22);
+            this.label18.TabIndex = 31;
+            this.label18.Text = "Số điện thoại";
+            // 
+            // txtDiemTichLuy
+            // 
+            this.txtDiemTichLuy.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtDiemTichLuy.Location = new System.Drawing.Point(679, 121);
+            this.txtDiemTichLuy.Name = "txtDiemTichLuy";
+            this.txtDiemTichLuy.Size = new System.Drawing.Size(211, 35);
+            this.txtDiemTichLuy.TabIndex = 26;
+            this.txtDiemTichLuy.TextChanged += new System.EventHandler(this.txtDiemTichLuy_TextChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label21.Location = new System.Drawing.Point(676, 96);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(116, 22);
+            this.label21.TabIndex = 25;
+            this.label21.Text = "Điểm tích lũy";
+            // 
+            // btnLuuKH
+            // 
+            this.btnLuuKH.BackColor = System.Drawing.Color.LightGray;
+            this.btnLuuKH.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuuKH.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnLuuKH.Location = new System.Drawing.Point(321, 185);
+            this.btnLuuKH.Name = "btnLuuKH";
+            this.btnLuuKH.Size = new System.Drawing.Size(114, 45);
+            this.btnLuuKH.TabIndex = 22;
+            this.btnLuuKH.Text = "Lưu";
+            this.btnLuuKH.UseVisualStyleBackColor = false;
+            this.btnLuuKH.Click += new System.EventHandler(this.btnLuuKH_Click);
+            // 
+            // btnClearKH
+            // 
+            this.btnClearKH.BackColor = System.Drawing.Color.LightGray;
+            this.btnClearKH.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearKH.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnClearKH.Location = new System.Drawing.Point(458, 185);
+            this.btnClearKH.Name = "btnClearKH";
+            this.btnClearKH.Size = new System.Drawing.Size(114, 45);
+            this.btnClearKH.TabIndex = 21;
+            this.btnClearKH.Text = "Clear";
+            this.btnClearKH.UseVisualStyleBackColor = false;
+            this.btnClearKH.Click += new System.EventHandler(this.btnClearKH_Click);
+            // 
+            // btnThem
+            // 
+            this.btnThem.BackColor = System.Drawing.Color.LightGray;
+            this.btnThem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThem.ForeColor = System.Drawing.Color.Sienna;
+            this.btnThem.Location = new System.Drawing.Point(480, 44);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(134, 44);
+            this.btnThem.TabIndex = 15;
+            this.btnThem.Text = "Thêm";
+            this.btnThem.UseVisualStyleBackColor = false;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.BackColor = System.Drawing.Color.LightGray;
+            this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoa.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnXoa.Location = new System.Drawing.Point(620, 44);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(129, 44);
+            this.btnXoa.TabIndex = 12;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnCapNhat
+            // 
+            this.btnCapNhat.BackColor = System.Drawing.Color.LightGray;
+            this.btnCapNhat.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapNhat.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnCapNhat.Location = new System.Drawing.Point(755, 44);
+            this.btnCapNhat.Name = "btnCapNhat";
+            this.btnCapNhat.Size = new System.Drawing.Size(140, 44);
+            this.btnCapNhat.TabIndex = 11;
+            this.btnCapNhat.Text = "Cập nhật";
+            this.btnCapNhat.UseVisualStyleBackColor = false;
+            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label23.Location = new System.Drawing.Point(227, 96);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(62, 22);
+            this.label23.TabIndex = 5;
+            this.label23.Text = "Họ tên";
+            // 
+            // txtHoTen
+            // 
+            this.txtHoTen.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtHoTen.Location = new System.Drawing.Point(231, 121);
+            this.txtHoTen.Name = "txtHoTen";
+            this.txtHoTen.Size = new System.Drawing.Size(204, 35);
+            this.txtHoTen.TabIndex = 4;
+            this.txtHoTen.TextChanged += new System.EventHandler(this.txtHoTen_TextChanged);
+            // 
+            // txtMaKhachHang
+            // 
+            this.txtMaKhachHang.BackColor = System.Drawing.Color.LightSalmon;
+            this.txtMaKhachHang.Location = new System.Drawing.Point(9, 121);
+            this.txtMaKhachHang.Name = "txtMaKhachHang";
+            this.txtMaKhachHang.Size = new System.Drawing.Size(198, 35);
+            this.txtMaKhachHang.TabIndex = 3;
+            this.txtMaKhachHang.TextChanged += new System.EventHandler(this.txtMaKhachHang_TextChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label24.Location = new System.Drawing.Point(5, 96);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(127, 22);
+            this.label24.TabIndex = 2;
+            this.label24.Text = "Mã khách hàng";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.NavajoWhite;
+            this.label25.Location = new System.Drawing.Point(18, 17);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(235, 26);
+            this.label25.TabIndex = 1;
+            this.label25.Text = "Thông tin khách hàng";
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.Color.LightSalmon;
+            this.textBox8.Location = new System.Drawing.Point(483, 640);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(195, 35);
+            this.textBox8.TabIndex = 29;
             // 
             // fAdmin
             // 
@@ -983,6 +1257,8 @@
             this.pnAdmin.ResumeLayout(false);
             this.pnAdmin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tpQLKH.ResumeLayout(false);
+            this.tpQLKH.PerformLayout();
             this.tpQLNV.ResumeLayout(false);
             this.tpQLNV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeView)).EndInit();
@@ -1003,6 +1279,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tpDashBoard.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomerList)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1082,5 +1361,26 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtTimKiem;
+        private System.Windows.Forms.Button btnTimKiemKH;
+        private System.Windows.Forms.DataGridView dgvCustomerList;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.TextBox txtSoDienThoai;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtDiemTichLuy;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button btnLuuKH;
+        private System.Windows.Forms.Button btnClearKH;
+        private System.Windows.Forms.Button btnThem;
+        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnCapNhat;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtHoTen;
+        private System.Windows.Forms.TextBox txtMaKhachHang;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox textBox8;
     }
 }

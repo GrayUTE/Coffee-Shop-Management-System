@@ -47,13 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BUS\AccountBUS.cs" />
+    <Compile Include="BUS\CustomerBUS.cs" />
     <Compile Include="BUS\EmployeeBUS.cs" />
     <Compile Include="BUS\FoodBUS.cs" />
     <Compile Include="DAO\AccountDAO.cs" />
+    <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\EmployeeDAO.cs" />
     <Compile Include="DAO\FoodDAO.cs" />
     <Compile Include="DataBase\DatabaseConnection.cs" />
     <Compile Include="DTO\AccountDTO.cs" />
+    <Compile Include="DTO\CustomerDTO.cs" />
     <Compile Include="DTO\EmployeeDTO.cs" />
     <Compile Include="DTO\FoodDTO.cs" />
     <Compile Include="Program.cs" />
@@ -128,7 +131,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataBase\DB_QLQuanCafe.sql" />
+    <Content Include="procedure\proc_AddCustomer.sql" />
+    <Content Include="procedure\proc_AddEmployeeAndAccount.sql" />
+    <Content Include="procedure\proc_DeleteCustomer.sql" />
+    <Content Include="procedure\proc_DeleteEmployeeAndAccount.sql" />
+    <Content Include="procedure\proc_GetCustomerList.sql" />
+    <Content Include="procedure\proc_GetEmployeeList.sql" />
+    <Content Include="procedure\proc_SearchCustomer.sql" />
+    <Content Include="procedure\proc_SearchEmployee.sql" />
     <Content Include="procedure\proc_searchFood.sql" />
+    <Content Include="procedure\proc_UdapteCustomer.sql" />
+    <Content Include="procedure\proc_UpdateEmployee.sql" />
     <Content Include="Utils\.gitignore" />
     <Content Include="Utils\DataDummy.sql" />
     <Content Include="procedure\proc_addFood.sql" />
